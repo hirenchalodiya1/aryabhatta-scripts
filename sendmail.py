@@ -11,7 +11,7 @@ def send_mail(subject, text):
     username = config("SMTP_USERNAME", cast=str)
     password = config("PASSWORD", cast=str)
     sender = config("SENDER", cast=str)
-    targets = [config("RECEIVER", cast=str)]
+    targets = config("RECEIVER", cast=lambda v: [x.strip() for x in v.split(',')])
 
     msg = MIMEText(text)
     msg['Subject'] = subject
