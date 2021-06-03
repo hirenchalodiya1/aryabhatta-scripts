@@ -144,3 +144,5 @@ secrets.py
 
 last-fetched.json
 changes/
+
+run.sh

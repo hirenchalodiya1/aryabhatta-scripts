@@ -7,6 +7,7 @@ name = "pypi"
 robobrowser = "*"
 werkzeug = "==0.16.0"
 dictdiffer = "*"
+python-decouple = "*"
 
 [dev-packages]
 
