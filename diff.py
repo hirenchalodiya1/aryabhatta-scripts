@@ -14,8 +14,10 @@ def _write_diff(diffs):
         os.makedirs('changes')
     now = datetime.now()
     with open(f'changes/{datetime.date(now)}-{now.hour}-{now.minute}-{now.second}.txt', 'w') as f:
-        for diff in diffs:
-            f.write(str(diff))
+        text = ""
+        for d in diffs:
+            text += f"{d}\n\n"
+        f.write(str(text))
 
 
 def check_diff(result):
