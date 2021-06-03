@@ -47,7 +47,28 @@ def _semester_aggregate_info(result):
         'credits_earned': credits_earned,
         'points_earned': points_earned,
         'total_points': total_points,
-        'sgpa': sgpa
+        'sgpa': f"{sgpa:.2f}"
+    }
+
+
+def _get_aggregate_info(result):
+    total_points = 0
+    total_earned_points = 0
+    total_credits = 0
+    for key, value in result.items():
+        try:
+            _ = int(key)  # check it's semester number
+            total_credits += value["aggregate_info"]["credits_earned"]
+            total_earned_points += value["aggregate_info"]["points_earned"]
+            total_points += value["aggregate_info"]["total_points"]
+        except:
+            pass
+    cgpa = total_earned_points / total_points
+    return {
+        'total_points': total_points,
+        'total_earned_points': total_earned_points,
+        'total_credits': total_credits,
+        'cgpa': f"{cgpa:.2f}"
     }
 
 
@@ -67,5 +88,7 @@ def transcript(browser):
             "aggregate_info": _semester_aggregate_info(result)
         }
         semester_number += 1
+
+    _transcript["aggregate"] = _get_aggregate_info(_transcript)
 
     return _transcript
