@@ -63,7 +63,7 @@ def _get_aggregate_info(result):
             total_points += value["aggregate_info"]["total_points"]
         except:
             pass
-    cgpa = total_earned_points / total_points
+    cgpa = total_earned_points / total_points * 10
     return {
         'total_points': total_points,
         'total_earned_points': total_earned_points,
