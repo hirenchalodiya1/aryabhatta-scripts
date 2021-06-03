@@ -61,7 +61,7 @@ def transcript(browser):
     semester_number = 1
     for table in tables[:-3]:
         sem, result = _scrap_table(table)
-        _transcript[semester_number] = {
+        _transcript[str(semester_number)] = {
             "semester": sem,
             "result": result,
             "aggregate_info": _semester_aggregate_info(result)
