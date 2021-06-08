@@ -4,9 +4,11 @@ from scrapper import transcript
 from secrets import CREDENTIALS
 from diff import check_diff
 from sendmail import send_mail
+from decouple import config
 import argparse
 import sys
 import json
+import traceback
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--sendMail', type=str, dest="send_mail", default=None, nargs="*")
@@ -48,4 +50,5 @@ try:
     else:
         print("No difference")
 except Exception as e:
-    send_mail("Error in Aryabhatta Script", str(e))
+    err_trace = ''.join(traceback.format_exception(None, e, e.__traceback__))
+    send_mail("Error in Aryabhatta Script", err_trace, targets=[config("DEV_EMAIL", cast=str)])
