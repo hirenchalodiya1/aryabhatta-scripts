@@ -16,7 +16,6 @@ parser.add_argument('--sendAll', action='store_true', dest="send_all", default=F
 options = parser.parse_args(sys.argv[1:])
 
 
-
 @with_login
 def main(browser, **kwargs):
     return transcript(browser)
